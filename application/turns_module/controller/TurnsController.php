@@ -11,6 +11,7 @@ class TurnsController extends Controller
 {
     public function index(\think\Request $request)
     {
+
         $post = $request->post();
 
         $date = Db::table('date_turns_list')->where('turns_class',$post['turns_class'])->select();
