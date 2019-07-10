@@ -1,16 +1,12 @@
 <?php
-/**
- *  文件名称 :  common.php
- *  创 建 者 :  Jing Zhi Qiang
- *  文件描述 :  测试登录接口模块公共何函数文件
- *  历史记录 :  -----------------------
- */
+
 
 // +----------------------------------
 // : 自定义函数区域
 // +----------------------------------
 
 function getCurl($url,&$httpCode= 0) {
+
     // 创建一个新cURL资源
     $ch = curl_init();
 
@@ -28,7 +24,19 @@ function getCurl($url,&$httpCode= 0) {
 
     // 返回结果
     return $file_contents;
+}
 
+function getsCurl($url){
+    $curl = curl_init(); // 启动一个CURL会话
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_HEADER, 0);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // 跳过证书检查
+
+    $tmpInfo = curl_exec($curl);     //返回api的json对象
+    //关闭URL请求
+    curl_close($curl);
+    return $tmpInfo;    //返回json对象
 }
 
 /**
